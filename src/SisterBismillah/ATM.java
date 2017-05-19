@@ -33,23 +33,27 @@ public class ATM implements Serializable{
                 }
                 
 		//Runtime.getRuntime().exec("cls");
+                int pil = 0;
+                while (pil < 5){
                 System.out.println("Selamat Datang Nomor Rekening " +accountNum+ " di Bank kami");
                 System.out.println("Silahkan pilih transaksi yang akan anda pilih :\n" 
                     +"1. Menabung\n"
                     +"2. Tarik Tunai\n"
                     +"3. Cek Saldo\n"
-                    +"4. Transfer");
+                    +"4. Transfer\n"
+                    + "5. Keluar\n"
+                    + "pilihan : ");
         
-		int pil = sc.nextInt();
+		pil = sc.nextInt();
                 double amount;
-                while (pil == 5){
+                
                     if (pil == 1) {
                         System.out.print("Jumlah yang akan di tabung : ");
 			amount = sc.nextInt();
                         akun = bankInterface.ambilAkun(accountNum);
 			double resultDeposit = bankInterface.deposit(akun, amount);
 			System.out.println("Jumlah Uang yang tersedia : Rp " + precision2.format(resultDeposit));
-			break;
+			
                     }
                     else if(pil == 2) {
                         System.out.print("Jumlah yang akan di Tarik Tunai : ");
@@ -57,14 +61,14 @@ public class ATM implements Serializable{
 			akun = bankInterface.ambilAkun(accountNum);
 			double resultWithdraw = bankInterface.withdraw(akun, amount);
                         System.out.print("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
-			break;
+			
                     }
                     else if(pil == 3) {
                         System.out.print("Cek Saldo");
                         akun = bankInterface.ambilAkun(accountNum);
 			double resultInquiry = bankInterface.inquiry(akun);
 			System.out.print("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
-			break;
+			
                     }
                     else if(pil == 4){
                         System.out.print("Masukkan Nomor Rekening Tujuan : ");
@@ -74,7 +78,7 @@ public class ATM implements Serializable{
 			akun = bankInterface.ambilAkun(accountNum); 
                         akun2 = bankInterface.ambilAkun(accountNum2); 
                         bankInterface.transfer(akun, akun2, amount);
-			break;
+		
                     }
                 }
 	}
