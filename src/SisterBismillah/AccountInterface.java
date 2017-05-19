@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 package SisterBismillah;
-/* 
-Author1: Cillian Myles - 11424252 - 4BP1
-Author2: Alan Byrne - 10300719 - 4BP1
-Module: CT414 - Distributed Systems & Co-op Computing
-Assignment: Distributed Banking System
-*/
 
 import java.util.Date;
 import java.util.List;

@@ -8,10 +8,6 @@ import SisterBismillah.Database;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Arfiatnaprambudi
- */
 public class Aplikasi {
     private ArrayList<Account> daftarAkun;
     private Database connection;

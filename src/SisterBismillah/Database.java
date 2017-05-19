@@ -16,10 +16,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Nuzulul Aulia P P
- */
 public class Database {
     private String dbuser = "root";
     private String dbpassword = "";
