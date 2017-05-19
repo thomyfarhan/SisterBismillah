@@ -28,16 +28,16 @@ public class ATM implements Serializable{
 		int accountNum = sc.nextInt();
 		// connecting to remote server                
                 
-                bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.105:1106/BankInterface");
-                bankInterface2 = (BankInterface) Naming.lookup("rmi://192.168.249.106:1107/BankInterface");
+                bankInterface = (BankInterface) Naming.lookup("rmi://192.168.43.171:1106/BankInterface");
+                bankInterface2 = (BankInterface) Naming.lookup("rmi://192.168.43.254:1107/BankInterface");
                 if (bankInterface.ambilAkun(accountNum) == null){
-                    bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.106:1107/BankInterface");
-                    bankInterface2 = (BankInterface) Naming.lookup("rmi://192.168.249.105:1106/BankInterface");
+                    bankInterface = (BankInterface) Naming.lookup("rmi://192.168.43.254:1107/BankInterface");
+                    bankInterface2 = (BankInterface) Naming.lookup("rmi://192.168.43.171:1106/BankInterface");
                 }
                 
 		//Runtime.getRuntime().exec("cls");
                 boolean fix = true;
-                while (fix){
+                while (fix == true){
                     System.out.println("Selamat Datang Nomor Rekening " +accountNum+ " di Bank kami");
                     System.out.println("Silahkan pilih transaksi yang akan anda pilih :\n" 
                         +"1. Menabung\n"
@@ -60,19 +60,23 @@ public class ATM implements Serializable{
                             akun = bankInterface.ambilAkun(accountNum);
                             resultDeposit = bankInterface.deposit(akun, amount);
                             System.out.println("Jumlah Uang yang tersedia : Rp " + precision2.format(resultDeposit));
+                            System.in.read();
                             break;
                         case 2:
                             System.out.print("Jumlah yang akan di Tarik Tunai : ");
                             amount = sc.nextInt();
                             akun = bankInterface.ambilAkun(accountNum);
                             resultWithdraw = bankInterface.withdraw(akun, amount);
-                            System.out.print("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
+                            System.out.println("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
+                            System.in.read();
                             break;
                         case 3:
-                            System.out.print("Cek Saldo");
+                            System.out.print("Cek Saldo \n");
                             akun = bankInterface.ambilAkun(accountNum);
                             resultInquiry = bankInterface.inquiry(akun);
-                            System.out.print("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
+                            System.out.println("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
+                            System.in.read();
+                            break;
                         case 4:
                             System.out.print("Silahkan pilih pilihan berikut : \n"
                                     + "1. Transfer ke ATM dengan bank yang sama\n"
@@ -88,6 +92,7 @@ public class ATM implements Serializable{
                                 akun = bankInterface.ambilAkun(accountNum); 
                                 akun2 = bankInterface.ambilAkun(accountNum2); 
                                 bankInterface.transfer(akun, akun2, amount);
+                                System.out.print("Transfer Berhasil Ke Bank yang Sama Dengan Nominal : " + amount);
                             }
                             else if (pil2 == 2){
                                 System.out.print("Masukkan Nomor Rekening Tujuan : ");
@@ -98,7 +103,13 @@ public class ATM implements Serializable{
                                 akun2 = bankInterface2.ambilAkun(accountNum2);
                                 resultDeposit = bankInterface2.deposit(akun2, amount);
                                 resultWithdraw = bankInterface.withdraw(akun, amount+7500);
+                                System.out.print("Transfer Berhasil Ke Bank yang Berbeda Dengan Nominal: " + amount + "(Dengan biaya admin 7500)");
                             }
+                            System.in.read();
+                            break;
+                        case 5:
+                            fix = false;
+                            break;
                             
                             
                     }
