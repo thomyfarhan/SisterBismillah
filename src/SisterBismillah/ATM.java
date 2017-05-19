@@ -33,52 +33,47 @@ public class ATM implements Serializable{
                 }
                 
 		//Runtime.getRuntime().exec("cls");
-                int pil = 0;
-                while (pil < 5){
-                System.out.println("Selamat Datang Nomor Rekening " +accountNum+ " di Bank kami");
-                System.out.println("Silahkan pilih transaksi yang akan anda pilih :\n" 
-                    +"1. Menabung\n"
-                    +"2. Tarik Tunai\n"
-                    +"3. Cek Saldo\n"
-                    +"4. Transfer\n"
-                    + "5. Keluar\n"
-                    + "pilihan : ");
-        
-		pil = sc.nextInt();
-                double amount;
-                
-                    if (pil == 1) {
-                        System.out.print("Jumlah yang akan di tabung : ");
-			amount = sc.nextInt();
-                        akun = bankInterface.ambilAkun(accountNum);
-			double resultDeposit = bankInterface.deposit(akun, amount);
-			System.out.println("Jumlah Uang yang tersedia : Rp " + precision2.format(resultDeposit));
-			
-                    }
-                    else if(pil == 2) {
-                        System.out.print("Jumlah yang akan di Tarik Tunai : ");
-			amount = sc.nextInt();
-			akun = bankInterface.ambilAkun(accountNum);
-			double resultWithdraw = bankInterface.withdraw(akun, amount);
-                        System.out.print("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
-			
-                    }
-                    else if(pil == 3) {
-                        System.out.print("Cek Saldo");
-                        akun = bankInterface.ambilAkun(accountNum);
-			double resultInquiry = bankInterface.inquiry(akun);
-			System.out.print("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
-			
-                    }
-                    else if(pil == 4){
-                        System.out.print("Masukkan Nomor Rekening Tujuan : ");
-			int accountNum2 = sc.nextInt();
-			System.out.print ("Jumlah yang akan di transfer : ");
-			amount = sc.nextInt();
-			akun = bankInterface.ambilAkun(accountNum); 
-                        akun2 = bankInterface.ambilAkun(accountNum2); 
-                        bankInterface.transfer(akun, akun2, amount);
-		
+                boolean fix = true;
+                while (fix){
+                    System.out.println("Selamat Datang Nomor Rekening " +accountNum+ " di Bank kami");
+                    System.out.println("Silahkan pilih transaksi yang akan anda pilih :\n" 
+                        +"1. Menabung\n"
+                        +"2. Tarik Tunai\n"
+                        +"3. Cek Saldo\n"
+                        +"4. Transfer\n"
+                        + "5. Keluar\n"
+                        + "pilihan : ");
+
+                    int pil = sc.nextInt();
+                    double amount;
+                    
+                    switch(pil){
+                        case 1:
+                            System.out.print("Jumlah yang akan di tabung : ");
+                            amount = sc.nextInt();
+                            akun = bankInterface.ambilAkun(accountNum);
+                            double resultDeposit = bankInterface.deposit(akun, amount);
+                            System.out.println("Jumlah Uang yang tersedia : Rp " + precision2.format(resultDeposit));
+                            break;
+                        case 2:
+                            System.out.print("Jumlah yang akan di Tarik Tunai : ");
+                            amount = sc.nextInt();
+                            akun = bankInterface.ambilAkun(accountNum);
+                            double resultWithdraw = bankInterface.withdraw(akun, amount);
+                            System.out.print("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
+                        case 3:
+                            System.out.print("Cek Saldo");
+                            akun = bankInterface.ambilAkun(accountNum);
+                            double resultInquiry = bankInterface.inquiry(akun);
+                            System.out.print("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
+                        case 4:
+                            System.out.print("Masukkan Nomor Rekening Tujuan : ");
+                            int accountNum2 = sc.nextInt();
+                            System.out.print ("Jumlah yang akan di transfer : ");
+                            amount = sc.nextInt();
+                            akun = bankInterface.ambilAkun(accountNum); 
+                            akun2 = bankInterface.ambilAkun(accountNum2); 
+                            bankInterface.transfer(akun, akun2, amount);
                     }
                 }
 	}
