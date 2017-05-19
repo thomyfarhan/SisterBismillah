@@ -40,34 +40,34 @@ public class ATM implements Serializable{
                     +"3. Cek Saldo\n"
                     +"4. Transfer");
         
-		int pil = sc.nextInt();         
-		switch (pil) {
-		
-		case 1:
-			System.out.print("Jumlah yang akan di tabung : ");
-			double amount = sc.nextInt();
+		int pil = sc.nextInt();
+                double amount;
+                while (pil == 5){
+                    if (pil == 1) {
+                        System.out.print("Jumlah yang akan di tabung : ");
+			amount = sc.nextInt();
                         akun = bankInterface.ambilAkun(accountNum);
 			double resultDeposit = bankInterface.deposit(akun, amount);
 			System.out.println("Jumlah Uang yang tersedia : Rp " + precision2.format(resultDeposit));
 			break;
-		
-		case 2:
-			System.out.print("Jumlah yang akan di Tarik Tunai : ");
+                    }
+                    else if(pil == 2) {
+                        System.out.print("Jumlah yang akan di Tarik Tunai : ");
 			amount = sc.nextInt();
 			akun = bankInterface.ambilAkun(accountNum);
 			double resultWithdraw = bankInterface.withdraw(akun, amount);
                         System.out.print("Jumlah Uang Setelah di tarik tunai : Rp " + precision2.format(resultWithdraw));
 			break;
-
-		case 3:
-			System.out.print("Cek Saldo");
+                    }
+                    else if(pil == 3) {
+                        System.out.print("Cek Saldo");
                         akun = bankInterface.ambilAkun(accountNum);
 			double resultInquiry = bankInterface.inquiry(akun);
 			System.out.print("Jumlah Uang saat ini : Rp " + precision2.format(resultInquiry));
 			break;
-
-		case 4:
-			System.out.print("Masukkan Nomor Rekening Tujuan : ");
+                    }
+                    else if(pil == 4){
+                        System.out.print("Masukkan Nomor Rekening Tujuan : ");
 			int accountNum2 = sc.nextInt();
 			System.out.print ("Jumlah yang akan di transfer : ");
 			amount = sc.nextInt();
@@ -75,6 +75,7 @@ public class ATM implements Serializable{
                         akun2 = bankInterface.ambilAkun(accountNum2); 
                         bankInterface.transfer(akun, akun2, amount);
 			break;
-		}
+                    }
+                }
 	}
 }
