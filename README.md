@@ -1,4 +1,4 @@
-# Sistem ATM Bank dengan RPC
+# Sistem ATM Bank dengan RMI
 
 Tugas Besar Sistem Paralel dan Terdistribusi
 
