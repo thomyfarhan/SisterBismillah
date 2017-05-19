@@ -21,15 +21,17 @@ public class ATM implements Serializable{
 	public static void main(String[] args) throws Exception{
 		
 		Scanner sc = new Scanner(System.in);
-		
-		// connecting to remote server
-		bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.1:1106/BankInterface");
-		
+                
 		System.out.println("Client is connected to server");
                 System.out.println("Selamat Datang di Bank kami");
                 System.out.print("Masukkan No. Rekening : ");
 		int accountNum = sc.nextInt();
-		
+		// connecting to remote server                
+                bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.1:1106/BankInterface");
+                if (bankInterface.ambilAkun(accountNum) == null){
+                    bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.1:1106/BankInterface");
+                }
+                
 		//Runtime.getRuntime().exec("cls");
                 System.out.println("Selamat Datang Nomor Rekening " +accountNum+ " di Bank kami");
                 System.out.println("Silahkan pilih transaksi yang akan anda pilih :\n" 

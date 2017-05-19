@@ -91,8 +91,8 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		System.out.println("Instance of Bank created"); 
 		
 		// Put the server object into the Registry
-		System.setProperty("java.rmi.server.hostname","192.168.0.103");
-		Naming.rebind("rmi://192.168.0.103:1106/BankInterface", bankServer); 
+		System.setProperty("java.rmi.server.hostname","192.168.1.6");
+		Naming.rebind("rmi://192.168.1.6:1106/BankInterface", bankServer); 
 		System.out.println("Name rebind completed"); 
 		System.out.println("Server ready for requests!"); 
             Aplikasi model = new Aplikasi();    
