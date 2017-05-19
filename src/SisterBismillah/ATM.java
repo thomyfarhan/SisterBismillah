@@ -1,3 +1,4 @@
+//tubes
 package SisterBismillah;
 
 import SisterBismillah.Account;
@@ -27,9 +28,9 @@ public class ATM implements Serializable{
                 System.out.print("Masukkan No. Rekening : ");
 		int accountNum = sc.nextInt();
 		// connecting to remote server                
-                bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.1:1106/BankInterface");
+                bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.105:1106/BankInterface");
                 if (bankInterface.ambilAkun(accountNum) == null){
-                    bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.1:1106/BankInterface");
+                    bankInterface = (BankInterface) Naming.lookup("rmi://192.168.249.106:1107/BankInterface");
                 }
                 
 		//Runtime.getRuntime().exec("cls");
